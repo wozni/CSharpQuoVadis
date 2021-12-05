@@ -10,7 +10,6 @@ public class SettingsXmlGenerator : ISourceGenerator
 {
     public void Execute(GeneratorExecutionContext context)
     {
-        Console.WriteLine("Execute!");
         IEnumerable<AdditionalText> settingsFiles =
             context.AdditionalFiles.Where(at => at.Path.EndsWith(".xmlsettings"));
         foreach (AdditionalText settingsFile in settingsFiles)
@@ -21,7 +20,6 @@ public class SettingsXmlGenerator : ISourceGenerator
 
     private void ProcessSettingsFile(AdditionalText xmlFile, GeneratorExecutionContext context)
     {
-        // try and load the settings file
         XmlDocument xmlDoc = new XmlDocument();
         string text = xmlFile.GetText(context.CancellationToken).ToString();
         try
@@ -35,7 +33,6 @@ public class SettingsXmlGenerator : ISourceGenerator
         }
 
 
-        // create a class in the XmlSetting class that represnts this entry, and a static field that contains a singleton instance.
         string fileName = Path.GetFileName(xmlFile.Path);
         string name = xmlDoc.DocumentElement.GetAttribute("name");
 
@@ -86,6 +83,5 @@ public {settingType} {settingName}
 
     public void Initialize(GeneratorInitializationContext context)
     {
-        Console.WriteLine("Initialized!");
     }
 }
