@@ -1,15 +1,20 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+// IEnumerable<string>
+// public void Add(string)
+
 using System.Collections;
+
 var names = new List<string>
 {
     "Marcin",
     "Leszek"
 };
 
-var blog = new Blog
+
+var blog = new Blog()
 {
-    Title = "Przykładowy blog",
+    Title = "Nowy blog",
     Posts =
     {
         "Post 1",
@@ -18,21 +23,41 @@ var blog = new Blog
 };
 
 
+
+
+
+
 public class Blog
 {
-    public Posts Posts { get;  } = new Posts();
     public string Title { get; init; }
+
+    public Posts Posts { get; } = new ();
+
 }
+
+
 
 public class Posts : IEnumerable<string>
 {
-    public void Add(string item)
-    {
 
+    public IEnumerator<string> GetEnumerator()
+    {
+        throw new NotImplementedException();
     }
 
-    public string Title { get; set; }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 
-    public IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    public void Add(string post)
+    {
+    }
+
 }
+
+
+
+
+
+
