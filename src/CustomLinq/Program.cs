@@ -2,13 +2,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
+using MyLinqToString;
 
 var days = new[] { "Monday", "Tuesday", "Wednesday" };
 var daysWithE = from day in days
-    where day.Contains("e")
-    select day;
+    where day.Contains("a")
+    select new { day, num = days.Length };
 
 foreach (var d in daysWithE)
 {
@@ -16,10 +15,16 @@ foreach (var d in daysWithE)
 }
 
 
+
+
 namespace  MyLinqToString
 {
     public static class MyConditions
     {
+        public static IEnumerable<TResult> Select<TOriginal, TResult>(this IEnumerable<TOriginal> original, Func<TOriginal, TResult> selector)
+        {
+            return System.Linq.Enumerable.Empty<TResult>();
+        }
         public static IEnumerable<string> Where(this IEnumerable<string> items, Func<string, bool> predicate)
         {
             foreach (var item in items)

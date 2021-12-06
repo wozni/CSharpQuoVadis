@@ -40,6 +40,3 @@ public class ShapeAreaComparer : IComparer<Shape>
     }
 }
 
-
-
-
